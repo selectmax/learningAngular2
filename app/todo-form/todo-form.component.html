@@ -1,4 +1,4 @@
-<form class="todo-form" (submit)="create($event, titleInput)">
-    <input type="text" placeholder="Что нужно сделать?" #titleInput>
-    <button type="submit">Добавить</button>
+<form class="todo-form" (ngSubmit)="create(); todoForm.reset()" #todoForm="ngForm">
+    <input name="title" [(ngModel)]="newTodoTitle" type="text" placeholder="Что нужно сделать?" required>
+    <button type="submit" [disabled]="todoForm.form.invalid">Добавить</button>
 </form>

@@ -11,7 +11,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var TodoFormComponent = (function () {
     function TodoFormComponent() {
+        this.newTodoTitle = '';
     }
+    TodoFormComponent.prototype.create = function () {
+    };
     TodoFormComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
