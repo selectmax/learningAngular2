@@ -9,19 +9,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var data_1 = require('../shared/data');
+var todo_service_1 = require('../shared/todo.service');
 var TodoListComponent = (function () {
-    function TodoListComponent() {
-        this.todos = data_1.todos;
+    function TodoListComponent(todoService) {
+        this.todoService = todoService;
+        this.todos = [];
     }
-    TodoListComponent.prototype.toggle = function (todo) {
-        todo.completed = !todo.completed;
+    TodoListComponent.prototype.ngOnInit = function () {
+        this.todos = this.todoService.getTodos();
     };
     TodoListComponent.prototype.delete = function (todo) {
-        var index = this.todos.indexOf(todo);
-        if (index > -1) {
-            this.todos.splice(index, 1);
-        }
+        this.todoService.deleteTodo(todo);
+    };
+    TodoListComponent.prototype.toggle = function (todo) {
+        this.todoService.toggleTodo(todo);
     };
     TodoListComponent = __decorate([
         core_1.Component({
@@ -30,7 +31,7 @@ var TodoListComponent = (function () {
             templateUrl: 'todo-list.component.html',
             styleUrls: ['todo-list.component.css']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [todo_service_1.TodoService])
     ], TodoListComponent);
     return TodoListComponent;
 }());

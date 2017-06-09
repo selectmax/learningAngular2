@@ -9,11 +9,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var todo_service_1 = require("../shared/todo.service");
 var TodoFormComponent = (function () {
-    function TodoFormComponent() {
-        this.newTodoTitle = '';
+    function TodoFormComponent(todoService) {
+        this.todoService = todoService;
+        this.title = '';
     }
-    TodoFormComponent.prototype.create = function () {
+    TodoFormComponent.prototype.onSubmit = function () {
+        this.todoService.createTodo(this.title);
     };
     TodoFormComponent = __decorate([
         core_1.Component({
@@ -22,7 +25,7 @@ var TodoFormComponent = (function () {
             templateUrl: 'todo-form.component.html',
             styleUrls: ['todo-form.component.css']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [todo_service_1.TodoService])
     ], TodoFormComponent);
     return TodoFormComponent;
 }());
