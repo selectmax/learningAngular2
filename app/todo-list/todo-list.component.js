@@ -16,7 +16,8 @@ var TodoListComponent = (function () {
         this.todos = [];
     }
     TodoListComponent.prototype.ngOnInit = function () {
-        this.todos = this.todoService.getTodos();
+        var _this = this;
+        this.todoService.getTodos().then(function (todos) { return _this.todos = todos; });
     };
     TodoListComponent.prototype.delete = function (todo) {
         this.todoService.deleteTodo(todo);
